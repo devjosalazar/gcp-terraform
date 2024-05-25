@@ -13,7 +13,7 @@ provider "google" {
 }
 
 resource "google_compute_network" "vpc_network" {
-  name                    = "terraform-network"
+  name                    = "terraform-network-unique"
   auto_create_subnetworks = false
   mtu                     = 1460
 }
