@@ -13,20 +13,20 @@ provider "google" {
 }
 
 resource "google_compute_network" "vpc_network" {
-  name                    = "terraform-network-unique"
+  name                    = "terraform-network-unique1"
   auto_create_subnetworks = false
   mtu                     = 1460
 }
 
 resource "google_compute_subnetwork" "default" {
-  name          = "terraform-subnet-unique"
+  name          = "terraform-subnet-unique1"
   ip_cidr_range = "10.0.1.0/24"
   region        = "us-west1"
   network       = google_compute_network.vpc_network.id
 }
 
 resource "google_compute_instance" "default" {
-  name         = "flask-vm-unique"
+  name         = "flask-vm-unique1"
   machine_type = "f1-micro"
   zone         = "us-west1-a"
   tags         = ["ssh"]
@@ -61,7 +61,7 @@ resource "google_compute_instance" "default" {
 }
 
 resource "google_compute_firewall" "ssh" {
-  name = "allow-ssh-unique"
+  name = "allow-ssh-unique1"
   allow {
     ports    = ["22"]
     protocol = "tcp"
@@ -74,7 +74,7 @@ resource "google_compute_firewall" "ssh" {
 }
 
 resource "google_compute_firewall" "flask" {
-  name    = "flask-app-firewall-unique"
+  name    = "flask-app-firewall-unique1"
   network = google_compute_network.vpc_network.id
 
   allow {
