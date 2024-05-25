@@ -19,14 +19,14 @@ resource "google_compute_network" "vpc_network" {
 }
 
 resource "google_compute_subnetwork" "default" {
-  name          = "terraform-subnet"
+  name          = "terraform-subnet-unique"
   ip_cidr_range = "10.0.1.0/24"
   region        = "us-west1"
   network       = google_compute_network.vpc_network.id
 }
 
 resource "google_compute_instance" "default" {
-  name         = "flask-vm"
+  name         = "flask-vm-unique"
   machine_type = "f1-micro"
   zone         = "us-west1-a"
   tags         = ["ssh"]
@@ -41,7 +41,7 @@ resource "google_compute_instance" "default" {
     #!/bin/bash
     sudo apt-get update
     sudo apt-get install -y python3-pip git
-    pip3 install flask
+    pip3 install -r /home/tu-usuario/my-terraform-project/requirements.txt
 
     # Clona el proyecto desde el repositorio de GitHub
     git clone https://github.com/devjosalazar/gcp-terraform.git /home/tu-usuario/my-terraform-project
@@ -61,7 +61,7 @@ resource "google_compute_instance" "default" {
 }
 
 resource "google_compute_firewall" "ssh" {
-  name = "allow-ssh"
+  name = "allow-ssh-unique"
   allow {
     ports    = ["22"]
     protocol = "tcp"
@@ -74,7 +74,7 @@ resource "google_compute_firewall" "ssh" {
 }
 
 resource "google_compute_firewall" "flask" {
-  name    = "flask-app-firewall"
+  name    = "flask-app-firewall-unique"
   network = google_compute_network.vpc_network.id
 
   allow {
