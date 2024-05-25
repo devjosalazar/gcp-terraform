@@ -44,10 +44,10 @@ resource "google_compute_instance" "default" {
     pip3 install flask
 
     # Clona el proyecto desde el repositorio de GitHub
-    git clone https://github.com/devjosalazar/gcp-python.git /home/tu-usuario/tu-proyecto
+    git clone https://github.com/devjosalazar/gcp-terraform.git /home/tu-usuario/my-terraform-project
 
     # Navega al directorio del proyecto y ejecuta la aplicación
-    cd /home/tu-usuario/tu-proyecto
+    cd /home/tu-usuario/my-terraform-project
     python3 app.py
   EOT
 
