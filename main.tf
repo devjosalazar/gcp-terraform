@@ -9,7 +9,7 @@ terraform {
 
 provider "google" {
   project     = "innate-beacon-424414-k5"
-  credentials = "${file("credentials.json")}"
+  credentials = file("credentials.json")
 }
 
 resource "google_compute_network" "vpc_network" {
